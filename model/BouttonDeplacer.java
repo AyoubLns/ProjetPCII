@@ -27,6 +27,5 @@ public class BouttonDeplacer extends Thread {
         }
         boutton.replaceBtnDeplacer();
         boutton.removeBtnRester();
-        boutton.replaceBtnPlanter();
     }
 }
