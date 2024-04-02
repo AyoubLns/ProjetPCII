@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 public class UnitControl extends MouseAdapter {
     private ListeJardiniers liste_jardiniers;
     private CarteView carteView; // le modèle ne devrait pas connaître sa vue...
-
     /**
      * Le contrôleur prend en paramèter la liste des jardiniers
      */
@@ -37,7 +36,7 @@ public class UnitControl extends MouseAdapter {
             // pareil : double distance = Point.distance(mouseX,mouseY,jardinierX,jardinierY);
 
             // si je suis dans la zone d'action du jardinier
-            if (distance <= CarteVue.RAYON) {
+            if (distance <= CarteView.RAYON) {
 
                 Jardinier selectedJardinier = liste_jardiniers.getSelected();
 

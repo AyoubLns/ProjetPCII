@@ -5,10 +5,10 @@ package vue;
  */
 public class Redessine extends Thread {
 
-    private CarteVue vue ;
+    private CarteView vue ;
 
     /** constructeur */
-    public Redessine(CarteVue view) {
+    public Redessine(CarteView view) {
         this.vue = view;
     }
 
