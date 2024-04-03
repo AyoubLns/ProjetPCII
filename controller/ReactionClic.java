@@ -1,11 +1,13 @@
 package controller;
 
-import model.BouttonDeplacer;
-import model.BouttonRester;
-import vue.Boutton;
+import model.*;
+import vue.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ReactionClic {
     private Boutton boutton;

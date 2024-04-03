@@ -1,7 +1,7 @@
 package model;
 
-import controller.RessourceControl;
-import vue.RessourceVue;
+import controller.*;
+import vue.*;
 
 import javax.swing.*;
 

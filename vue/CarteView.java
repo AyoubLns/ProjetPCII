@@ -7,6 +7,7 @@ import model.ListeJardiniers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /** Cette classe définit le panel principal dans lequel on dessine les jardiniers */
 public class CarteView extends JPanel {

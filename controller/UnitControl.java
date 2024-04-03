@@ -1,8 +1,7 @@
 package controller;
 
-import model.Jardinier;
-import model.ListeJardiniers;
-import vue.CarteView;
+import model.*;
+import vue.*;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

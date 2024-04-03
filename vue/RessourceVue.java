@@ -1,8 +1,8 @@
 package vue;
 
-import controller.RessourceControl;
+import controller.*;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 public class RessourceVue extends JPanel {
     private int etat; // 0 = jeune, 1 = mûr, 2 = pourri
     private int valeur; // Valeur de la ressource en fonction de son état

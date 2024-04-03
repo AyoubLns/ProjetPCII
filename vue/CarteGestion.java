@@ -1,8 +1,15 @@
 // CarteVue.java
 package vue;
 
+import controller.RessourceControl;
+import model.Fleur;
+import model.Jardinier;
+import model.ListeFleurs;
+import model.ListeJardiniers;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class CarteGestion extends JPanel {

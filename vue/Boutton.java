@@ -1,7 +1,8 @@
 package vue;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class Boutton extends JPanel {
     private JButton btnDeplacer;

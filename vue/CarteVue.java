@@ -3,9 +3,7 @@ package vue;
 
 import controller.ReactionClic;
 import controller.UnitControl;
-import model.BouttonPlanter;
-import model.ListeJardiniers;
-import model.RessourceManager;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;

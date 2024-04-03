@@ -3,6 +3,7 @@ package main;
 import controller.UnitControl;
 import model.ListeFleurs;
 import model.ListeJardiniers;
+import vue.*;
 
 import javax.swing.*;
 

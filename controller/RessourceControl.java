@@ -1,8 +1,7 @@
 package controller;
 
-import model.BouttonRecolter;
-import vue.Boutton;
-import vue.RessourceVue;
+import model.*;
+import vue.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,14 +43,14 @@ public class RessourceControl extends JPanel {
         progressBar.addChangeListener(e -> {
             if (progressBar.getValue() == 10) {
                 progressBar.setString("Pourri");
-                progressBar.setForeground(Color.RED);
+                progressBar.setForeground(java.awt.Color.RED);
             }
         });
         // SI etat = 5 afficher "mûr" sur la barre de progression
         progressBar.addChangeListener(e -> {
             if (progressBar.getValue() == 5) {
                 progressBar.setString("Mûr");
-                progressBar.setForeground(Color.ORANGE);
+                progressBar.setForeground(java.awt.Color.ORANGE);
 
             }
         });

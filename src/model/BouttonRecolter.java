@@ -1,5 +1,6 @@
 package model;
-import vue.*;
+
+import vue.Boutton;
 
 public class BouttonRecolter extends Thread {
     private Boutton boutton;

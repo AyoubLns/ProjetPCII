@@ -1,6 +1,5 @@
 package model;
-
-import vue.Boutton;
+import vue.*;
 
 public class BouttonRester extends Thread {
     private Boutton boutton;
