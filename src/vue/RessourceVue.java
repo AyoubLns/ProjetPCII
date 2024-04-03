@@ -15,7 +15,7 @@ public class RessourceVue extends JPanel {
     RessourceVue flrJaune;
     RessourceVue flrVerte;
     RessourceVue flrRouge;
-    private int width = 150, heigth = 50;
+    public static final int width = 150, heigth = 50;
     private Boutton boutton;
 
     public RessourceVue(Boutton boutton){

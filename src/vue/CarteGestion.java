@@ -6,7 +6,7 @@ import java.awt.*;
 
 
 public class CarteGestion extends JPanel {
-    private int width = 240, height = 600;
+    public static final int width = 220, height = 600;
 
 
     Boutton boutton;
@@ -14,7 +14,7 @@ public class CarteGestion extends JPanel {
     /** Le constructeur : charge l'image des jardiniers, note la liste pour le paint, et lance le thread de repaint */
     public CarteGestion(Boutton boutton){
         this.setPreferredSize(new Dimension(width, height));
-        this.setBackground(Color.DARK_GRAY);
+        this.setBackground(Color.decode("#4A5D23"));
 
         this.boutton = boutton;
 

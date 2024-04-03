@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 
 public class CarteVue extends JFrame {
-    private int width = 800, height = 600;
+    public static final int width = 800, height = 600;
     public CarteVue(){
         JFrame frame = new JFrame("Jeu de jardinage");
 

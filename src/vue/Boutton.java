@@ -8,7 +8,7 @@ public class Boutton extends JPanel {
     private JButton btnPlanter;
     private JButton btnRecolter;
     private JButton btnRester;
-    private int width = 110, heigth = 20;
+    public static final int width = 110, heigth = 20;
 
     public Boutton() {
         setLayout(new GridLayout(2, 1));

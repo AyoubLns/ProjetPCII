@@ -13,7 +13,7 @@ public class CarteView extends JPanel {
     public static final Font FONT_JARD = new Font("Arial", Font.BOLD, 16);
 
 
-    public static final int width = 560, height = 600;
+    public static final int width = 580, height = 600;
 
     /** La constante qui définit le rayon du cercle autour des jardiniers */
     public static final int RAYON = 57;
@@ -28,11 +28,14 @@ public class CarteView extends JPanel {
     private Boutton boutton;
 
     private ListeFleurs listeFleurs;
+    private Image backgroundImage;
 
     /** Le constructeur : charge l'image des jardiniers, note la liste pour le paint, et lance le thread de repaint */
     public CarteView(ListeJardiniers jardiniers, Boutton boutton){
         this.setPreferredSize(new Dimension(width, height));
-        this.setBackground(Color.LIGHT_GRAY);
+
+        this.backgroundImage = new ImageIcon("images/background.png").getImage();
+
         listeFleurs = new ListeFleurs();
 
         // garder la liste des jardiniers
@@ -74,6 +77,8 @@ public class CarteView extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         super.paintComponent(g2d);
+
+        g2d.drawImage(backgroundImage, 0, 0, width, height, this);
 
         for (Jardinier jardinier : lj.getJardiniers()) {
             int jardinierX = jardinier.getX();
