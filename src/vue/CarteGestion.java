@@ -6,7 +6,7 @@ import java.awt.*;
 
 
 public class CarteGestion extends JPanel {
-    public static final int width = 220, height = 600;
+    public static final int width = 400, height = 800;
 
 
     Boutton boutton;

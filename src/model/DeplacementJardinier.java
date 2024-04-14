@@ -1,14 +1,17 @@
 package model;
+import vue.Boutton;
 
 /** Ce thread gère le déplacement des jardiniers */
 public class DeplacementJardinier extends Thread {
 
     /* le jardinier sur lequel on travaille */
     private Jardinier jard;
+    private Boutton boutton;
 
     /** Le constructeur par défaut */
-    public DeplacementJardinier(Jardinier j) {
+    public DeplacementJardinier(Jardinier j, Boutton boutton) {
         jard = j;
+        this.boutton = boutton;
     }
 
     /** La méthode run appelle déplacer dans la classe Jardinier */

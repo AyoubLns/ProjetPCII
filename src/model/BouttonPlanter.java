@@ -16,6 +16,7 @@ public class BouttonPlanter extends Thread {
         System.out.println("Action : Planter des graines");
         while(n < DELAY) {
             boutton.removeBtnPlanter();
+            boutton.setBtnPlanterClicked();
             n++;
             try {
                 Thread.sleep(DELAY);

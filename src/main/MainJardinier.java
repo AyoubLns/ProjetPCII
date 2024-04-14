@@ -3,6 +3,7 @@ package main;
 import controller.UnitControl;
 import model.ListeFleurs;
 import model.ListeJardiniers;
+import vue.Boutton;
 
 import javax.swing.*;
 
@@ -11,7 +12,9 @@ public class MainJardinier {
     public static void main(String[] args) {
 
         /* la liste des jardiniers pour les tests */
-        ListeJardiniers lj = new ListeJardiniers();
+        Boutton boutton = new Boutton();
+
+        ListeJardiniers lj = new ListeJardiniers(boutton);
         ListeFleurs lf = new ListeFleurs();
 
         /* la carte pour visualiser les jardiniers */

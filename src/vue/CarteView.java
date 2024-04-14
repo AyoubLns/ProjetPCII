@@ -13,7 +13,7 @@ public class CarteView extends JPanel {
     public static final Font FONT_JARD = new Font("Arial", Font.BOLD, 16);
 
 
-    public static final int width = 580, height = 600;
+    public static final int width = 1100, height = 800;
 
     /** La constante qui définit le rayon du cercle autour des jardiniers */
     public static final int RAYON = 57;
@@ -45,7 +45,7 @@ public class CarteView extends JPanel {
         // Chargement des images de fleurs
         try {
             this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
-            this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
+            this.imageJeune = new ImageIcon("images/terre.png").getImage();
             imageJeune= imageJeune.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             this.imageMure = new ImageIcon("images/Fleur.png").getImage();
             imageMure= imageMure.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -134,25 +134,27 @@ public class CarteView extends JPanel {
             }
         }
 
-        boolean isNearFlower = false;
+        if (boutton.isBtnPlanterClicked()) {
+            boolean isNearFlower = false;
 
-        for (Jardinier jardinier : lj.getJardiniers()) {
-            for (Fleur fleur : listeFleurs.getFleurs()) {
-                double distance = Math.sqrt(Math.pow(jardinier.getX() - fleur.getX(), 2) + Math.pow(jardinier.getY() - fleur.getY(), 2));
-                if (distance <= 75 && distance >= 0) {
-                    isNearFlower = true;
+            for (Jardinier jardinier : lj.getJardiniers()) {
+                for (Fleur fleur : listeFleurs.getFleurs()) {
+                    double distance = Math.sqrt(Math.pow(jardinier.getX() - fleur.getX(), 2) + Math.pow(jardinier.getY() - fleur.getY(), 2));
+                    if (distance <= 75 && distance >= 0) {
+                        isNearFlower = true;
+                        break;
+                    }
+                }
+                if (isNearFlower) {
                     break;
                 }
             }
-            if (isNearFlower) {
-                break;
-            }
-        }
 
-        if (isNearFlower) {
-            boutton.replaceBtnPlanter();
-        } else {
-            boutton.removeBtnPlanter();
+            if (isNearFlower) {
+                boutton.replaceBtnRecolter();
+            } else {
+                boutton.removeBtnRecolter();
+            }
         }
 
 

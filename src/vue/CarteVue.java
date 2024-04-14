@@ -1,7 +1,6 @@
 // CarteVue.java
 package vue;
 
-import controller.ReactionClic;
 import controller.UnitControl;
 import model.BouttonPlanter;
 import model.ListeJardiniers;
@@ -14,7 +13,7 @@ import java.awt.event.ActionListener;
 
 
 public class CarteVue extends JFrame {
-    public static final int width = 800, height = 600;
+    public static final int width = 1500, height = 800;
     public CarteVue(){
         JFrame frame = new JFrame("Jeu de jardinage");
 
@@ -22,32 +21,26 @@ public class CarteVue extends JFrame {
         frame.setPreferredSize(new Dimension(width, height));
         frame.setResizable(false);
 
-        /* la liste des jardiniers pour les tests */
-        ListeJardiniers lj = new ListeJardiniers();
 
         Boutton boutton = new Boutton();
+
+        /* la liste des jardiniers pour les tests */
+        ListeJardiniers lj = new ListeJardiniers(boutton);
+
         RessourceVue ressourceVue = new RessourceVue(boutton);
-        new ReactionClic(boutton);
 
         //création des cartes
         CarteView carteView = new CarteView(lj, boutton);
         UnitControl controller = new UnitControl(lj);
 
-        boutton.getBtnDeplacer().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Ajouter le MouseListener à carteView lorsque le bouton est cliqué
-                carteView.addMouseListener(controller);
-            }
-        });
+
+        carteView.addMouseListener(controller);
 
         CarteGestion carteGestion = new CarteGestion(boutton);
 
         frame.setLayout(new BorderLayout());
-        frame.add(boutton.getBtnDeplacer());
         frame.add(boutton.getBtnPlanter());
         frame.add(boutton.getBtnRecolter());
-        frame.add(boutton.getBtnRester());
 
         frame.add(ressourceVue.getBtnRessource1());
         frame.add(ressourceVue.getBtnRessource2());

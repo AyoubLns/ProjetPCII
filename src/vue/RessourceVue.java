@@ -31,16 +31,16 @@ public class RessourceVue extends JPanel {
         btnRessource3 = new RessourceControl(flrVerte, "Vie de la fleur verte ", boutton);
         btnRessource4 = new RessourceControl(flrRouge, "Vie de la fleur rouge ", boutton);
 
-        btnRessource1.setBounts(610, 10, width, heigth);
+        btnRessource1.setBounts(1210, 10, width, heigth);
         this.add(btnRessource1);
 
-        btnRessource2.setBounts(610, 65, width, heigth);
+        btnRessource2.setBounts(1210, 65, width, heigth);
         this.add(btnRessource2);
 
-        btnRessource3.setBounts(610, 120, width, heigth);
+        btnRessource3.setBounts(1210, 120, width, heigth);
         this.add(btnRessource3);
 
-        btnRessource4.setBounts(610, 175, width, heigth);
+        btnRessource4.setBounts(1210, 175, width, heigth);
         this.add(btnRessource4);
     }
 
