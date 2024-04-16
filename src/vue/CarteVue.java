@@ -2,9 +2,7 @@
 package vue;
 
 import controller.UnitControl;
-import model.BouttonPlanter;
-import model.ListeJardiniers;
-import model.RessourceManager;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,11 +48,13 @@ public class CarteVue extends JFrame {
         frame.add(carteView, BorderLayout.CENTER);
         frame.add(carteGestion, BorderLayout.EAST);
 
+        ListeFleurs listeFleurs = new ListeFleurs();
+
         // On cree et et demarre  les RessourceManagers
-        RessourceManager ressourceManager1 = new RessourceManager(ressourceVue.getBtnRessource1(), ressourceVue.getFlrBleu());
-        RessourceManager ressourceManager2 = new RessourceManager(ressourceVue.getBtnRessource2(), ressourceVue.getFlrJaune());
-        RessourceManager ressourceManager3 = new RessourceManager(ressourceVue.getBtnRessource3(), ressourceVue.getFlrVerte());
-        RessourceManager ressourceManager4 = new RessourceManager(ressourceVue.getBtnRessource4(), ressourceVue.getFlrRouge());
+        RessourceManager ressourceManager1 = new RessourceManager(ressourceVue.getBtnRessource1(), ressourceVue.getFlrBleu(), listeFleurs.getFleurs().get(0));
+        RessourceManager ressourceManager2 = new RessourceManager(ressourceVue.getBtnRessource2(), ressourceVue.getFlrJaune(), listeFleurs.getFleurs().get(1));
+        RessourceManager ressourceManager3 = new RessourceManager(ressourceVue.getBtnRessource3(), ressourceVue.getFlrVerte(), listeFleurs.getFleurs().get(2));
+        RessourceManager ressourceManager4 = new RessourceManager(ressourceVue.getBtnRessource4(), ressourceVue.getFlrRouge(), listeFleurs.getFleurs().get(3));
 
         boutton.getBtnPlanter().addActionListener(new ActionListener() {
             @Override

@@ -32,9 +32,17 @@ public class RessourceControl extends JPanel {
         progressBar.setStringPainted(true); // Pour afficher le texte sur la barre
         this.add(progressBar);
 
+        progressBar.addChangeListener(e -> {
+            if (progressBar.getValue() > 0 && progressBar.getValue() < 2 ) {
+                progressBar.setString("Pas encore plantée  ");
+                progressBar.setForeground(Color.WHITE);
+
+            }
+        });
+
         // si etat = 0 afficher "jeune" sur la barre de progression
         progressBar.addChangeListener(e -> {
-            if (progressBar.getValue() > 0 && progressBar.getValue() < 5) {
+            if (progressBar.getValue() > 2 && progressBar.getValue() < 5) {
                 progressBar.setString("Jeune");
                 progressBar.setForeground(Color.GRAY);
 

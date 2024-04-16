@@ -22,10 +22,10 @@ public class ListeFleurs {
      */
     public ListeFleurs() {
         // Créez les fleurs sans utiliser getValetat() dans le constructeur
-        fleur = new Fleur("Tulipe", 50, 75);
-        fleur1 = new Fleur("Rose", 150, 115);
-        fleur2 = new Fleur("Lys", 200, 200);
-        fleur3 = new Fleur("Orchidée", 300, 300);
+        fleur = new Fleur("Tulipe", 50, 75, 0, 1000);
+        fleur1 = new Fleur("Rose", 150, 115, 0, 2000);
+        fleur2 = new Fleur("Lys", 200, 200, 0, 2000);
+        fleur3 = new Fleur("Orchidée", 300, 300, 0, 1000);
 
         // Ajouter les fleurs à la liste
         fleurs.add(fleur);

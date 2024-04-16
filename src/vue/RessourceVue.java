@@ -20,7 +20,7 @@ public class RessourceVue extends JPanel {
 
     public RessourceVue(Boutton boutton){
         flrBleu = new RessourceVue(0, 5, 1000); // Etat initial 0, valeur initiale 5
-        flrJaune = new RessourceVue(0, 10, 2000); // Etat initial 1, valeur initiale 10
+        flrJaune = new RessourceVue(0, 10, 1500); // Etat initial 1, valeur initiale 10
         flrVerte = new RessourceVue(0, 15, 1500); // Etat initial 3, valeur initiale 15
         flrRouge = new RessourceVue(0, 20, 1000); // Etat initial 5, valeur initiale 20
 

@@ -1,9 +1,6 @@
 package vue;
 
-import model.Fleur;
-import model.Jardinier;
-import model.ListeFleurs;
-import model.ListeJardiniers;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,9 +20,10 @@ public class CarteView extends JPanel {
     /** L'image pour dessiner les jardiniers */
     private Image jardinierImage;
 
-    private Image imageJeune, imageMure, imagePourrie, image;
+    private Image imageTerre, imageJeune, imageMure, imagePourrie, image;
 
     private Boutton boutton;
+    private EvolutionFleur evolutionFleur;
 
     private ListeFleurs listeFleurs;
     private Image backgroundImage;
@@ -42,10 +40,13 @@ public class CarteView extends JPanel {
         this.lj = jardiniers;
 
         this.boutton = boutton;
+
         // Chargement des images de fleurs
         try {
             this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
-            this.imageJeune = new ImageIcon("images/terre.png").getImage();
+            this.imageTerre = new ImageIcon("images/terre.png").getImage();
+            imageTerre = imageTerre.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
             imageJeune= imageJeune.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             this.imageMure = new ImageIcon("images/Fleur.png").getImage();
             imageMure= imageMure.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -114,14 +115,23 @@ public class CarteView extends JPanel {
 //                System.out.println(fleur.getEtatProgress());
 //            }
 
-            // Sélection de l'image en fonction de l'état de la fleur
-            switch (fleur.getEtatProgress()) {
-                case 0 : image = imageJeune; break;
-                case 1 : image = imageMure; break;
-                case 2: image = imagePourrie; break;
-                default: image = null;
+            EvolutionFleur evolutionFleur = new EvolutionFleur(fleur);
+
+            //evolutionFleur est lancé lorsque l'on appuie sur le boutton planter
+            if (boutton.isBtnPlanterClicked()) {
+                evolutionFleur.start();
             }
 
+            // Sélection de l'image en fonction de l'état de la fleur
+            if (fleur.getEtat() < 70) {
+                image = imageTerre;
+            } else if (fleur.getEtat() > 70 && fleur.getEtat() < 200) {
+                image = imageJeune;
+            } else if (fleur.getEtat() > 200 && fleur.getEtat() < 700) {
+                image = imageMure;
+            } else if (fleur.getEtat() > 700) {
+                image = imagePourrie;
+            }
 
             if (image != null) {
 

@@ -9,10 +9,12 @@ import javax.swing.*;
 public class RessourceManager extends Thread {
     private RessourceControl ressourceControl;
     private RessourceVue ressourceVue;
+    private Fleur fleur;
 
-    public RessourceManager(RessourceControl ressourceControl, RessourceVue ressourceVue) {
+    public RessourceManager(RessourceControl ressourceControl, RessourceVue ressourceVue, Fleur fleurs) {
         this.ressourceControl = ressourceControl;
         this.ressourceVue = ressourceVue;
+        this.fleur = fleurs;
     }
 
     @Override
