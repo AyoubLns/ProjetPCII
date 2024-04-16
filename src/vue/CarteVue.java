@@ -1,6 +1,7 @@
 // CarteVue.java
 package vue;
 
+import controller.RessourceControl;
 import controller.UnitControl;
 import model.*;
 
@@ -28,7 +29,7 @@ public class CarteVue extends JFrame {
         RessourceVue ressourceVue = new RessourceVue(boutton);
 
         //création des cartes
-        CarteView carteView = new CarteView(lj, boutton);
+        CarteView carteView = new CarteView(lj, boutton, ressourceVue);
         UnitControl controller = new UnitControl(lj);
 
 
@@ -50,6 +51,7 @@ public class CarteVue extends JFrame {
 
         ListeFleurs listeFleurs = new ListeFleurs();
 
+
         // On cree et et demarre  les RessourceManagers
         RessourceManager ressourceManager1 = new RessourceManager(ressourceVue.getBtnRessource1(), ressourceVue.getFlrBleu(), listeFleurs.getFleurs().get(0));
         RessourceManager ressourceManager2 = new RessourceManager(ressourceVue.getBtnRessource2(), ressourceVue.getFlrJaune(), listeFleurs.getFleurs().get(1));
@@ -64,6 +66,12 @@ public class CarteVue extends JFrame {
                 ressourceManager2.start();
                 ressourceManager3.start();
                 ressourceManager4.start();
+                if (carteView.getListeFleurs().fini()) {
+                    ressourceManager1.interrupt();
+                    ressourceManager2.interrupt();
+                    ressourceManager3.interrupt();
+                    ressourceManager4.interrupt();
+                }
             }
         });
 

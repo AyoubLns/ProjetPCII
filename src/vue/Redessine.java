@@ -6,6 +6,7 @@ package vue;
 public class Redessine extends Thread {
 
     private CarteView vue ;
+    private int DELAY = 10;
 
     /** constructeur */
     public Redessine(CarteView view) {
@@ -15,7 +16,14 @@ public class Redessine extends Thread {
     /** L'opération de redessin */
     @Override
     public void run() {
+        int n = 0;
         while (true) {
+            if (vue.getListeFleurs().fini()){
+                if(n > DELAY) {
+                    break;
+                }
+                n++;
+            }
             vue.revalidate();
             vue.repaint();
             try {

@@ -7,6 +7,7 @@ public class Boutton extends JPanel {
     private JButton btnPlanter;
     private JButton btnRecolter;
     private boolean boolPlanter = false;
+    private boolean boolRecolter = false;
     public static final int width = 110, heigth = 40;
 
     public Boutton() {
@@ -46,4 +47,5 @@ public class Boutton extends JPanel {
     public void setBtnPlanterClicked() {
         this.boolPlanter = true;
     }
+
 }

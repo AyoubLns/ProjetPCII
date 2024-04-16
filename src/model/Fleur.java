@@ -2,15 +2,14 @@ package model;
 
 import controller.RessourceControl;
 import vue.Boutton;
-//imoprt vue.RessourceVue;
-
 
 public class Fleur {
     private String nom;
     private int etat;
+    private int etatProgress; // État de la fleur pour la progression
     private int x; // Position X de la fleur sur la CarteVue
     private int y; // Position Y de la fleur sur la CarteVue
-    private int vitesse; // vitesse de la barre de progression
+    private int vitesse; // Vitesse de progression de l'état de la fleur
     private RessourceControl ressourceControl;
     private vue.RessourceVue ressourceVue;
     private Boutton boutton;
@@ -24,72 +23,78 @@ public class Fleur {
         this.vitesse = vitesse;
     }
 
-    /* Constructeurs
-    public Fleur(String nom, int x, int y, RessourceControl ressourceControl) {
-        this.nom = nom;
-        this.x = x;
-        this.y = y;
-        this.etat = 0; // état initial
-        this.ressourceControl = ressourceControl;
+    // Constructeur vide pour les instanciations sans paramètres
+    public Fleur() {
+        super();
     }
-    */
 
     // Méthode pour faire évoluer l'état de la fleur
     public Runnable evoluer() {
         // Logique pour changer l'état de la fleur
         // Par exemple, incrémenter l'état jusqu'à un certain point
-        if (this.etat <= 1000) {
+        if (this.etat <= 960) {
             this.etat++;
+        } else {
+            this.etat = 0;
         }
         return null;
     }
 
+    // Méthode pour obtenir la vitesse de la fleur
     public int getVitesse() {
         return vitesse;
     }
 
-    // Getters et Setters
+    // Méthode pour définir la vitesse de la fleur
+    public int setVitesse(int vitesse) {
+        return this.vitesse -= vitesse;
+    }
+
+    // Méthode pour obtenir le nom de la fleur
     public String getNom() {
         return nom;
     }
+
+    // Méthode pour obtenir l'état de la fleur
     public int getEtat() {
-        return this.etat;
+        // Logique pour déterminer l'état de la fleur pour la barre de progression
+        if (this.etat < 70) {
+            etatProgress = 0;
+        } else if (this.etat > 70 && this.etat < 200) {
+            etatProgress = 1;
+        } else if (this.etat > 200 && this.etat < 850) {
+            etatProgress = 2;
+        } else if (this.etat > 850 && this.etat < 950) {
+            etatProgress = 3;
+        } else if (this.etat > 950) {
+            etatProgress = 4;
+        }
+        return this.etatProgress;
     }
 
-    /*méthode pour renvoyer l'etat de la fleur en fonction de l'avancement de la barre de progression
-    public int getEtatProgress() {
-        if (ressourceControl != null) {
-            return ressourceControl.getEtat();
-        }
-        return etat;
-
-    }*/
-
+    // Méthode pour définir l'état de la fleur
     public void setEtat(int etat) {
         this.etat = etat;
-
     }
 
+    // Méthode pour obtenir la position X de la fleur
     public int getX() {
         return x;
     }
 
+    // Méthode pour obtenir la position Y de la fleur
     public int getY() {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    // Méthode pour obtenir une coordonnée aléatoire pour X entre 0 et 1000
+    public int getRandomX() {
+        return (int) (Math.random() * 1000);
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    //fais une méthode pour attribuer des coordonnées aléatoires comprises entre 0 à 1500 pour x et 0 à 800 pour y
-    public void setRandomPosition() {
-        this.x = (int) (Math.random() * 1500);
-        this.y = (int) (Math.random() * 800);
+    // Méthode pour obtenir une coordonnée aléatoire pour Y entre 0 et 750
+    public int getRandomY() {
+        return (int) (Math.random() * 750);
     }
 
 }

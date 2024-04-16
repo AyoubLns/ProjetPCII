@@ -71,6 +71,10 @@ public class RessourceVue extends JPanel {
         return this.vitesse;
     }
 
+    public void setVitesse(int vitesse) {
+        this.vitesse -= vitesse;
+    }
+
     public RessourceControl getBtnRessource1() {
         return btnRessource1;
     }
@@ -97,7 +101,4 @@ public class RessourceVue extends JPanel {
         return flrRouge;
     }
 
-    public void setEtat(int i) {
-        this.etat = i;
-    }
 }
