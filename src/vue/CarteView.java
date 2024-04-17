@@ -19,7 +19,6 @@ public class CarteView extends JPanel {
     private final ListeJardiniers lj;
     /** L'image pour dessiner les jardiniers */
     private Image jardinierImage;
-
     private Image imageTerre, imageJeune,
             imageTulipe, imageRose, imageLys, imageOrchidee,
             imagePourrie, coeurImage, image;
@@ -46,7 +45,7 @@ public class CarteView extends JPanel {
 
         // Chargement des images de fleurs
         try {
-            this.jardinierImage = new ImageIcon("images/jardinier2.png").getImage();
+            this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
             jardinierImage = jardinierImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageTerre = new ImageIcon("images/terre.png").getImage();
