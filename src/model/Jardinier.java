@@ -1,7 +1,5 @@
 package model;
 
-import vue.Boutton;
-
 /** La classe Jardinier : un jardinier est caractérisé par sa position x,y, par un identifiant (un nom).
  * On note aussi si le jardinier est le jardinier courant dans la sélection. (peut-être pas utile à la fin, on verra)
  * Les jardiniers ont un thread de déplacement qui les emène vers une cible dès qu'elle change
@@ -14,27 +12,25 @@ public class Jardinier {
     /* Les attributs caractéristiques */
     private int x;
     private int y;
-    private String id;
+    private final String id;
     /* la cible */
     private int cible_x;
     private int cible_y;
 
     /* pour savoir si j'ai été sélectionné */
     private boolean aEteClique;
-    private Boutton boutton;
 
     /** Le constructeur par défaut */
-    public Jardinier(int x, int y, String id, Boutton boutton) {
+    public Jardinier(int x, int y, String id) {
         this.x = x;
         this.y = y;
         this.cible_x = x;
         this.cible_y = y;
         this.id = id;
         this.aEteClique = false;
-        this.boutton = boutton;
 
         // on lance le thread de déplacement
-        (new DeplacementJardinier(this, boutton)).start();
+        (new DeplacementJardinier(this)).start();
     }
 
 
@@ -57,11 +53,6 @@ public class Jardinier {
     /** Le setter sur la sélection de jardinier, utilisée par le contrôleur UnitControl lorsqu'on clic sur un jardinier */
     public void setSelected(boolean selected) {
         this.aEteClique = selected;
-    }
-
-    /** Le getter sur la sélection, utilisée par le contrôleur UnitControl pour savoir si le jardinier était déjà sélectionné */
-    public boolean isSelected() {
-        return aEteClique;
     }
 
     /** Le setter sur la cible, utilisé par UnitControl */

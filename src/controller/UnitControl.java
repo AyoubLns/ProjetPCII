@@ -8,8 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class UnitControl extends MouseAdapter {
-    private ListeJardiniers liste_jardiniers;
-    private CarteView carteView; // le modèle ne devrait pas connaître sa vue...
+    private final ListeJardiniers liste_jardiniers;
     /**
      * Le contrôleur prend en paramèter la liste des jardiniers
      */

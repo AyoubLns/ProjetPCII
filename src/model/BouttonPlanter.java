@@ -3,7 +3,7 @@ package model;
 import vue.Boutton;
 
 public class BouttonPlanter extends Thread {
-    private Boutton boutton;
+    private final Boutton boutton;
     private static final int DELAY = 50;
 
     public BouttonPlanter(Boutton b){

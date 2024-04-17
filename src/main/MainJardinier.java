@@ -1,7 +1,6 @@
 package main;
 
 import controller.UnitControl;
-import model.ListeFleurs;
 import model.ListeJardiniers;
 import vue.Boutton;
 
@@ -14,8 +13,8 @@ public class MainJardinier {
         /* la liste des jardiniers pour les tests */
         Boutton boutton = new Boutton();
 
-        ListeJardiniers lj = new ListeJardiniers(boutton);
-        ListeFleurs lf = new ListeFleurs();
+        ListeJardiniers lj = new ListeJardiniers();
+        //ListeFleurs lf = new ListeFleurs();
 
         /* la carte pour visualiser les jardiniers */
         //CarteVue carteView = new CarteVue(lj);

@@ -1,25 +1,14 @@
 package model;
 
-import controller.RessourceControl;
-import vue.Boutton;
-
-/**
- * Classe Fleur qui gere les fleurs de la carte et leur etat d'evolution
- * * Modèle pour les fleurs
- *
- */
-
 public class Fleur {
-    private String nom; // Nom de la fleur
-    private int etat; // État de la fleur pour l'évolution
+    private final String nom;
+    private int etat;
     private int etatProgress; // État de la fleur pour la progression
-    private int x; // Position X de la fleur sur la CarteVue
-    private int y; // Position Y de la fleur sur la CarteVue
-    private int vitesse; // Vitesse de progression de l'état de la fleur
+    private final int x; // Position X de la fleur sur la CarteVue
+    private final int y; // Position Y de la fleur sur la CarteVue
+    private final int vitesse; // Vitesse de progression de l'état de la fleur
 
-
-    // Constructeur pour les instanciations avec paramètres de la classe Fleur
-
+    // Constructeur sans RessourceControl
     public Fleur(String nom, int x, int y, int etat, int vitesse) {
         this.nom = nom;
         this.x = x;
@@ -28,9 +17,8 @@ public class Fleur {
         this.vitesse = vitesse;
     }
 
-
     // Méthode pour faire évoluer l'état de la fleur
-    public Runnable evoluer() {
+    public void evoluer() {
         // Logique pour changer l'état de la fleur
         // Par exemple, incrémenter l'état jusqu'à un certain point
         if (this.etat <= 960) {
@@ -38,17 +26,11 @@ public class Fleur {
         } else {
             this.etat = 0;
         }
-        return null;
     }
 
     // Méthode pour obtenir la vitesse de la fleur
     public int getVitesse() {
         return vitesse;
-    }
-
-    // Méthode pour définir la vitesse de la fleur
-    public int setVitesse(int vitesse) {
-        return this.vitesse -= vitesse;
     }
 
     // Méthode pour obtenir le nom de la fleur
@@ -71,11 +53,6 @@ public class Fleur {
             etatProgress = 4;
         }
         return this.etatProgress;
-    }
-
-    // Méthode pour définir l'état de la fleur
-    public void setEtat(int etat) {
-        this.etat = etat;
     }
 
     // Méthode pour obtenir la position X de la fleur

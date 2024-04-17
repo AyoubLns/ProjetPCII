@@ -5,8 +5,8 @@ package vue;
  */
 public class Redessine extends Thread {
 
-    private CarteView vue ;
-    private int DELAY = 10;
+    private final CarteView vue ;
+    private static final int DELAY = 10;
 
     /** constructeur */
     public Redessine(CarteView view) {

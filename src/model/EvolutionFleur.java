@@ -1,22 +1,12 @@
 package model;
 
-
-/**
- * Classe EvolutionFleur qui hérite de Thread  qui gére l'évolution d'une fleur
- * Thread qui permet de faire évoluer une fleur
- *
- */
 public class EvolutionFleur extends Thread{
-    private Fleur fleur; // Fleur à faire évoluer
-    private int DELAY = 1000; // Délai entre chaque évolution
+    private final Fleur fleur;
+    private static final int DELAY = 1000;
 
     public EvolutionFleur(Fleur fleur){
         this.fleur = fleur;
     }
-
-    /**
-     * Méthode qui permet de faire évoluer une fleur
-     */
 
     @Override
     public void run() {

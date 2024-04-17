@@ -1,12 +1,9 @@
-
 package vue;
 
 import model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /** Cette classe définit le panel principal dans lequel on dessine les jardiniers */
@@ -19,91 +16,59 @@ public class CarteView extends JPanel {
     public static final int RAYON = 57;
 
     /** La liste des jardiniers */
-    private ListeJardiniers lj;
+    private final ListeJardiniers lj;
     /** L'image pour dessiner les jardiniers */
     private Image jardinierImage;
 
     private Image imageTerre, imageJeune,
-            imageTulipe, imageRose, imageLys, imageOrchidee, // Images pour les fleurs
-            imagePourrie, coeurImage, image, // Images pour les fleurs et les coeurs
-            imageLysF, imageLysB, // Images pour les fleurs fanées et bourgeon de lys
-            imageRoseB, imageRoseF, // Images pour les fleurs fanées et bourgeon de rose
-            imageOrchB, imageOrchF, // Images pour les fleurs fanées et bourgeon d'orchidée
-            imageTuliB, imageTuliF; // Images pour les fleurs fanées et bourgeon de tulipe
-    private Boutton boutton;
-
-    private ListeFleurs listeFleurs; // La liste des fleurs
-    private Image backgroundImage; // L'image de fond
-    private int score = 0; // Le score du joueur
-    private int coeurs = 5; // Le nombre de coeurs restants
-    private RessourceVue ressourceVue;
+            imageTulipe, imageRose, imageLys, imageOrchidee,
+            imagePourrie, coeurImage, image;
+    private final Boutton boutton;
+    private final ListeFleurs listeFleurs;
+    private final Image backgroundImage;
+    private int score = 0;
+    private final RessourceVue ressourceVue;
 
     /** Le constructeur : charge l'image des jardiniers, note la liste pour le paint, et lance le thread de repaint */
     public CarteView(ListeJardiniers jardiniers, Boutton boutton, RessourceVue ressourceVue){
         this.setPreferredSize(new Dimension(width, height));
 
-        // Chargement de l'image de fond
-
-        this.backgroundImage = new ImageIcon("images/fond.png").getImage();
-
-        listeFleurs = new ListeFleurs(); // garder la liste des fleurs
+        this.backgroundImage = new ImageIcon("images/background.png").getImage();
 
         // garder la liste des jardiniers
         this.lj = jardiniers;
 
-        this.boutton = boutton; // garder le boutton
+        this.boutton = boutton;
 
         this.ressourceVue = ressourceVue;
 
+        listeFleurs = new ListeFleurs();
+
         // Chargement des images de fleurs
         try {
-            this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
-
+            this.jardinierImage = new ImageIcon("images/jardinier2.png").getImage();
+            jardinierImage = jardinierImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageTerre = new ImageIcon("images/terre.png").getImage();
-            imageTerre = imageTerre.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imageTerre = imageTerre.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
-            imageJeune= imageJeune.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imageJeune= imageJeune.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageTulipe = new ImageIcon("images/tulipe.png").getImage();
-            imageTulipe= imageTulipe.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imageTulipe= imageTulipe.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageRose = new ImageIcon("images/rose.png").getImage();
-            imageRose= imageRose.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imageRose= imageRose.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageLys = new ImageIcon("images/lys.png").getImage();
-            imageLys= imageLys.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imageLys= imageLys.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imageOrchidee = new ImageIcon("images/orchidée.png").getImage();
-            imageOrchidee= imageOrchidee.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-
-            this.imageLysB = new ImageIcon("image/BourgLys").getImage();
-            imageLysB = imageLys.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageRoseB = new ImageIcon("image/BourgRose").getImage();
-            imageRoseB = imageRoseB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageOrchB = new ImageIcon("image/BourgBleu").getImage();
-            imageOrchB = imageOrchB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageTuliB = new ImageIcon("image/BourgTulipe").getImage();
-            imageTuliB = imageTuliB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageLysF = new ImageIcon("image/FaneeLys").getImage();
-            imageLysF = imageLysF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageOrchF = new ImageIcon("image/FaneeBleu").getImage();
-            imageOrchF = imageOrchF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageTuliF = new ImageIcon("image/Faneetulip").getImage();
-            imageTuliF =  imageTuliF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imageRoseF = new ImageIcon("image/FaneeRose").getImage();
-            imageRoseF = imageRoseF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+            imageOrchidee= imageOrchidee.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.imagePourrie = new ImageIcon("images/Fanée.png").getImage();
-            imagePourrie= imagePourrie.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            imagePourrie= imagePourrie.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
             this.coeurImage = new ImageIcon("images/coeur.png").getImage();
             coeurImage = coeurImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -124,7 +89,7 @@ public class CarteView extends JPanel {
         (new Redessine(this)).start();
     }
 
-    // Fonction pour mettre à jour le score en fonction de l'état de la fleur
+
     private void updateScore(int etatFleur) {
         if (etatFleur == 0) { // Si la fleur est à l'état Terre
             score += 1;
@@ -145,7 +110,7 @@ public class CarteView extends JPanel {
 
         g2d.drawImage(backgroundImage, 0, 0, width, height, this);
 
-        coeurs = listeFleurs.getFleurPourrie();
+        int coeurs = listeFleurs.getFleurPourrie();
 
         for (int i = 0; i < coeurs; i++) {
             g2d.drawImage(coeurImage, (width-15) - (i + 1) * coeurImage.getWidth(this), 0, this);
@@ -198,76 +163,53 @@ public class CarteView extends JPanel {
                     evolutionFleur.start();
                 }
 
-
-                boutton.getBtnRecolter().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        for (Jardinier jardinier : lj.getJardiniers()) {
-                            ArrayList<Fleur> copieFleurs = new ArrayList<>(listeFleurs.getFleurs());
-                            for (Fleur fleur : copieFleurs) {
-                                double distance = Math.sqrt(Math.pow(jardinier.getX() - fleur.getX(), 2) + Math.pow(jardinier.getY() - fleur.getY(), 2));
-                                if (distance <= 75 && distance >= 0) {
-                                    // Réinitialisation de la barre de progression appropriée dans RessourceControl
-                                    switch (fleur.getNom()) {
-                                        case "Tulipe":
-                                            ressourceVue.getFlrJaune().recolte(); // Réinitialiser la barre de progression de la fleur jaune
-                                            break;
-                                        case "Rose":
-                                            ressourceVue.getFlrRouge().recolte(); // Réinitialiser la barre de progression de la fleur rouge
-                                            break;
-                                        case "Lys":
-                                            ressourceVue.getFlrVerte().recolte(); // Réinitialiser la barre de progression de la fleur verte
-                                            break;
-                                        case "Orchidée":
-                                            ressourceVue.getFlrBleu().recolte(); // Réinitialiser la barre de progression de la fleur bleue
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                    listeFleurs.nvlFleur(fleur);
-
-                                    // Mise à jour du score en fonction de l'état de la fleur
-                                    updateScore(fleur.getEtat());
+                boutton.getBtnRecolter().addActionListener(e -> {
+                    for (Jardinier jardinier : lj.getJardiniers()) {
+                        ArrayList<Fleur> copieFleurs1 = new ArrayList<>(listeFleurs.getFleurs());
+                        for (Fleur fleur1 : copieFleurs1) {
+                            double distance = Math.sqrt(Math.pow(jardinier.getX() - fleur1.getX(), 2) + Math.pow(jardinier.getY() - fleur1.getY(), 2));
+                            if (distance <= 75) {
+                                // Réinitialisation de la barre de progression appropriée dans RessourceControl
+                                switch (fleur1.getNom()) {
+                                    case "Tulipe":
+                                        ressourceVue.getFlrJaune().recolte(); // Réinitialiser la barre de progression de la fleur jaune
+                                        break;
+                                    case "Rose":
+                                        ressourceVue.getFlrRouge().recolte(); // Réinitialiser la barre de progression de la fleur rouge
+                                        break;
+                                    case "Lys":
+                                        ressourceVue.getFlrVerte().recolte(); // Réinitialiser la barre de progression de la fleur verte
+                                        break;
+                                    case "Orchidée":
+                                        ressourceVue.getFlrBleu().recolte(); // Réinitialiser la barre de progression de la fleur bleue
+                                        break;
+                                    default:
+                                        break;
                                 }
+
+                                listeFleurs.nvlFleur(fleur1);
+
+                                // Mise à jour du score en fonction de l'état de la fleur
+                                updateScore(fleur1.getEtat());
                             }
                         }
                     }
                 });
 
-
                 if (fleur.getEtat() == 0) {
                     image = imageTerre;
                 } else if (fleur.getEtat() == 1) {
-                    if(fleur.getNom() == "Tulipe") {
-                        image = imageTuliB;
-                    } else if(fleur.getNom() == "Rose") {
-                        image = imageRoseB;
-                    } else if(fleur.getNom() == "Lys") {
-                        image = imageLysB;
-                    } else if(fleur.getNom() == "Orchidée") {
-                        image = imageOrchB;
-                    }
+                    image = imageJeune;
                 } else if (fleur.getEtat() == 2) {
-                    if(fleur.getNom() == "Tulipe") {
-                        image = imageTulipe;
-                    } else if(fleur.getNom() == "Rose") {
-                        image = imageRose;
-                    } else if(fleur.getNom() == "Lys") {
-                        image = imageLys;
-                    } else if(fleur.getNom() == "Orchidée") {
-                        image = imageOrchidee;
+                    switch (fleur.getNom()) {
+                        case "Tulipe" -> image = imageTulipe;
+                        case "Rose" -> image = imageRose;
+                        case "Lys" -> image = imageLys;
+                        case "Orchidée" -> image = imageOrchidee;
                     }
                 } else if (fleur.getEtat() == 3) {
-                    if(fleur.getNom() == "Tulipe") {
-                        image = imageTuliF;
-                    } else if(fleur.getNom() == "Rose") {
-                        image = imageRoseF;
-                    } else if(fleur.getNom() == "Lys") {
-                        image = imageLysF;
-                    } else if(fleur.getNom() == "Orchidée") {
-                        image = imageOrchF;
-                    }                } else if (fleur.getEtat() == 4) {
+                    image = imagePourrie;
+                } else if (fleur.getEtat() == 4) {
                     // Réinitialisation de la barre de progression appropriée dans RessourceControl
                     switch (fleur.getNom()) {
                         case "Tulipe":
@@ -289,10 +231,6 @@ public class CarteView extends JPanel {
                     listeFleurs.nvlFleur(fleur);
                 }
 
-
-
-
-
                 if (image != null) {
 
                     // Calcul des coordonnées pour centrer l'image dans le cercle
@@ -311,7 +249,7 @@ public class CarteView extends JPanel {
                 for (Jardinier jardinier : lj.getJardiniers()) {
                     for (Fleur fleur : listeFleurs.getFleurs()) {
                         double distance = Math.sqrt(Math.pow(jardinier.getX() - fleur.getX(), 2) + Math.pow(jardinier.getY() - fleur.getY(), 2));
-                        if (distance <= 75 && distance >= 0) {
+                        if (distance <= 75) {
                             isNearFlower = true;
                             break;
                         }

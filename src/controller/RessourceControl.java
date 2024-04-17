@@ -5,23 +5,17 @@ import vue.RessourceVue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class RessourceControl extends JPanel {
-    private RessourceVue ressourceVue;
+    private final RessourceVue ressourceVue;
     String nom; // Nom de la ressource
-    private JLabel etatLabel;
-    private JProgressBar progressBar;
-    private Boutton boutton;
+    private final JLabel etatLabel;
+    private final JProgressBar progressBar;
 
     // Constructeur prenant une instance de RessourceVue, un nom de ressource et un Boutton
     public RessourceControl(RessourceVue rv, String nom, Boutton boutton) {
         this.ressourceVue = rv;
         this.nom = nom;
-        this.boutton = boutton; // Initialiser l'objet boutton
 
         etatLabel = new JLabel(getNom() + ressourceVue.getetat());
         this.add(etatLabel);
@@ -55,11 +49,6 @@ public class RessourceControl extends JPanel {
                 progressBar.setForeground(Color.RED);
             }
         });
-    }
-
-    // Méthode pour obtenir l'état de la ressource
-    public int getEtat() {
-        return progressBar.getValue();
     }
 
     // Méthode pour obtenir le nom de la ressource
