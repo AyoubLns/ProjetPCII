@@ -18,10 +18,14 @@ public class CarteView extends JPanel {
     /** La liste des jardiniers */
     private final ListeJardiniers lj;
     /** L'image pour dessiner les jardiniers */
-    private Image jardinierImage;
+    private Image jardinierImage, jardinierImage2, imageJardiniere;
     private Image imageTerre, imageJeune,
-            imageTulipe, imageRose, imageLys, imageOrchidee,
-            imagePourrie, coeurImage, image;
+            imageTulipe, imageRose, imageLys, imageOrchidee, // Images pour les fleurs
+            imagePourrie, coeurImage, image, // Images pour les fleurs et les coeurs
+            imageLysF, imageLysB, // Images pour les fleurs fanées et bourgeon de lys
+            imageRoseB, imageRoseF, // Images pour les fleurs fanées et bourgeon de rose
+            imageOrchB, imageOrchF, // Images pour les fleurs fanées et bourgeon d'orchidée
+            imageTuliB, imageTuliF; // Images pour les fleurs fanées et bourgeon de tulipe
     private final Boutton boutton;
     private final ListeFleurs listeFleurs;
     private final Image backgroundImage;
@@ -45,29 +49,53 @@ public class CarteView extends JPanel {
 
         // Chargement des images de fleurs
         try {
-            this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
-            jardinierImage = jardinierImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            this.jardinierImage2 = new ImageIcon("images/jardinier1.png").getImage();
+            jardinierImage2 = jardinierImage2.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
 
             this.imageTerre = new ImageIcon("images/terre.png").getImage();
-            imageTerre = imageTerre.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageTerre = imageTerre.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
-            imageJeune= imageJeune.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageJeune= imageJeune.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageTulipe = new ImageIcon("images/tulipe.png").getImage();
-            imageTulipe= imageTulipe.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageTulipe= imageTulipe.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageRose = new ImageIcon("images/rose.png").getImage();
-            imageRose= imageRose.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageRose= imageRose.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageLys = new ImageIcon("images/lys.png").getImage();
-            imageLys= imageLys.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageLys= imageLys.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageOrchidee = new ImageIcon("images/orchidée.png").getImage();
-            imageOrchidee= imageOrchidee.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageOrchidee= imageOrchidee.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+
+            this.imageLysB = new ImageIcon("images/BourgLys.png").getImage();
+            imageLysB = imageLys.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageRoseB = new ImageIcon("images/BourgRose.png").getImage();
+            imageRoseB = imageRoseB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageOrchB = new ImageIcon("images/BourgBleu.png").getImage();
+            imageOrchB = imageOrchB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageTuliB = new ImageIcon("images/BourgTulipe.png").getImage();
+            imageTuliB = imageTuliB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageLysF = new ImageIcon("images/FaneeLys.png").getImage();
+            imageLysF = imageLysF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageOrchF = new ImageIcon("images/FaneeBleu.png").getImage();
+            imageOrchF = imageOrchF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageTuliF = new ImageIcon("images/FaneeTulipe.png").getImage();
+            imageTuliF =  imageTuliF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageRoseF = new ImageIcon("images/FaneeRose.png").getImage();
+            imageRoseF = imageRoseF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
 
             this.imagePourrie = new ImageIcon("images/Fanée.png").getImage();
-            imagePourrie= imagePourrie.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imagePourrie= imagePourrie.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.coeurImage = new ImageIcon("images/coeur.png").getImage();
             coeurImage = coeurImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -79,7 +107,7 @@ public class CarteView extends JPanel {
 
         // Chargement de l'image
         try {
-            this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
+            this.jardinierImage = this.jardinierImage2;
         } catch (Exception e) {
             e.printStackTrace();
             // Gestion d'erreur : ne pas planter l'application si l'image ne peut pas être chargée
@@ -198,7 +226,12 @@ public class CarteView extends JPanel {
                 if (fleur.getEtat() == 0) {
                     image = imageTerre;
                 } else if (fleur.getEtat() == 1) {
-                    image = imageJeune;
+                    switch (fleur.getNom()) {
+                        case "Tulipe" -> image = imageTuliB;
+                        case "Rose" -> image = imageRoseB;
+                        case "Lys" -> image = imageLysB;
+                        case "Orchidée" -> image = imageOrchB;
+                    }
                 } else if (fleur.getEtat() == 2) {
                     switch (fleur.getNom()) {
                         case "Tulipe" -> image = imageTulipe;
@@ -207,7 +240,12 @@ public class CarteView extends JPanel {
                         case "Orchidée" -> image = imageOrchidee;
                     }
                 } else if (fleur.getEtat() == 3) {
-                    image = imagePourrie;
+                    switch (fleur.getNom()) {
+                        case "Tulipe" -> image = imageTuliF;
+                        case "Rose" -> image = imageRoseF;
+                        case "Lys" -> image = imageLysF;
+                        case "Orchidée" -> image = imageOrchF;
+                    }
                 } else if (fleur.getEtat() == 4) {
                     // Réinitialisation de la barre de progression appropriée dans RessourceControl
                     switch (fleur.getNom()) {
