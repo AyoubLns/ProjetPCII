@@ -1,3 +1,4 @@
+
 package vue;
 
 import model.*;
@@ -22,59 +23,87 @@ public class CarteView extends JPanel {
     /** L'image pour dessiner les jardiniers */
     private Image jardinierImage;
 
-    private Image imageTerre, imageJeune, imageMure,
-            imageTulipe, imageRose, imageLys, imageOrchidee,
-            imagePourrie, coeurImage, image;
+    private Image imageTerre, imageJeune,
+            imageTulipe, imageRose, imageLys, imageOrchidee, // Images pour les fleurs
+            imagePourrie, coeurImage, image, // Images pour les fleurs et les coeurs
+            imageLysF, imageLysB, // Images pour les fleurs fanées et bourgeon de lys
+            imageRoseB, imageRoseF, // Images pour les fleurs fanées et bourgeon de rose
+            imageOrchB, imageOrchF, // Images pour les fleurs fanées et bourgeon d'orchidée
+            imageTuliB, imageTuliF; // Images pour les fleurs fanées et bourgeon de tulipe
     private Boutton boutton;
-    private EvolutionFleur evolutionFleur;
 
-    private ListeFleurs listeFleurs;
-    private Image backgroundImage;
-    private int score = 0;
-    private int coeurs = 5;
+    private ListeFleurs listeFleurs; // La liste des fleurs
+    private Image backgroundImage; // L'image de fond
+    private int score = 0; // Le score du joueur
+    private int coeurs = 5; // Le nombre de coeurs restants
     private RessourceVue ressourceVue;
 
     /** Le constructeur : charge l'image des jardiniers, note la liste pour le paint, et lance le thread de repaint */
     public CarteView(ListeJardiniers jardiniers, Boutton boutton, RessourceVue ressourceVue){
         this.setPreferredSize(new Dimension(width, height));
 
-        this.backgroundImage = new ImageIcon("images/background.png").getImage();
+        // Chargement de l'image de fond
 
-        listeFleurs = new ListeFleurs();
+        this.backgroundImage = new ImageIcon("images/fond.png").getImage();
+
+        listeFleurs = new ListeFleurs(); // garder la liste des fleurs
 
         // garder la liste des jardiniers
         this.lj = jardiniers;
 
-        this.boutton = boutton;
+        this.boutton = boutton; // garder le boutton
 
         this.ressourceVue = ressourceVue;
 
         // Chargement des images de fleurs
         try {
             this.jardinierImage = new ImageIcon("images/jardinier.png").getImage();
+
+
             this.imageTerre = new ImageIcon("images/terre.png").getImage();
-            imageTerre = imageTerre.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageTerre = imageTerre.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
-            imageJeune= imageJeune.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageJeune= imageJeune.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageTulipe = new ImageIcon("images/tulipe.png").getImage();
-            imageTulipe= imageTulipe.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageTulipe= imageTulipe.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageRose = new ImageIcon("images/rose.png").getImage();
-            imageRose= imageRose.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageRose= imageRose.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageLys = new ImageIcon("images/lys.png").getImage();
-            imageLys= imageLys.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageLys= imageLys.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageOrchidee = new ImageIcon("images/orchidée.png").getImage();
-            imageOrchidee= imageOrchidee.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageOrchidee= imageOrchidee.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
-            /*this.imageMure = new ImageIcon("images/Fleur.png").getImage();
-            imageMure= imageMure.getScaledInstance(50, 50, Image.SCALE_SMOOTH);*/
+            this.imageLysB = new ImageIcon("image/BourgLys").getImage();
+            imageLysB = imageLys.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageRoseB = new ImageIcon("image/BourgRose").getImage();
+            imageRoseB = imageRoseB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageOrchB = new ImageIcon("image/BourgBleu").getImage();
+            imageOrchB = imageOrchB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageTuliB = new ImageIcon("image/BourgTulipe").getImage();
+            imageTuliB = imageTuliB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageLysF = new ImageIcon("image/FaneeLys").getImage();
+            imageLysF = imageLysF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageOrchF = new ImageIcon("image/FaneeBleu").getImage();
+            imageOrchF = imageOrchF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageTuliF = new ImageIcon("image/Faneetulip").getImage();
+            imageTuliF =  imageTuliF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+
+            this.imageRoseF = new ImageIcon("image/FaneeRose").getImage();
+            imageRoseF = imageRoseF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
 
             this.imagePourrie = new ImageIcon("images/Fanée.png").getImage();
-            imagePourrie= imagePourrie.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imagePourrie= imagePourrie.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.coeurImage = new ImageIcon("images/coeur.png").getImage();
             coeurImage = coeurImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -95,7 +124,7 @@ public class CarteView extends JPanel {
         (new Redessine(this)).start();
     }
 
-
+    // Fonction pour mettre à jour le score en fonction de l'état de la fleur
     private void updateScore(int etatFleur) {
         if (etatFleur == 0) { // Si la fleur est à l'état Terre
             score += 1;
@@ -169,6 +198,7 @@ public class CarteView extends JPanel {
                     evolutionFleur.start();
                 }
 
+
                 boutton.getBtnRecolter().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -205,10 +235,19 @@ public class CarteView extends JPanel {
                     }
                 });
 
+
                 if (fleur.getEtat() == 0) {
                     image = imageTerre;
                 } else if (fleur.getEtat() == 1) {
-                    image = imageJeune;
+                    if(fleur.getNom() == "Tulipe") {
+                        image = imageTuliB;
+                    } else if(fleur.getNom() == "Rose") {
+                        image = imageRoseB;
+                    } else if(fleur.getNom() == "Lys") {
+                        image = imageLysB;
+                    } else if(fleur.getNom() == "Orchidée") {
+                        image = imageOrchB;
+                    }
                 } else if (fleur.getEtat() == 2) {
                     if(fleur.getNom() == "Tulipe") {
                         image = imageTulipe;
@@ -220,8 +259,15 @@ public class CarteView extends JPanel {
                         image = imageOrchidee;
                     }
                 } else if (fleur.getEtat() == 3) {
-                    image = imagePourrie;
-                } else if (fleur.getEtat() == 4) {
+                    if(fleur.getNom() == "Tulipe") {
+                        image = imageTuliF;
+                    } else if(fleur.getNom() == "Rose") {
+                        image = imageRoseF;
+                    } else if(fleur.getNom() == "Lys") {
+                        image = imageLysF;
+                    } else if(fleur.getNom() == "Orchidée") {
+                        image = imageOrchF;
+                    }                } else if (fleur.getEtat() == 4) {
                     // Réinitialisation de la barre de progression appropriée dans RessourceControl
                     switch (fleur.getNom()) {
                         case "Tulipe":
@@ -242,6 +288,10 @@ public class CarteView extends JPanel {
 
                     listeFleurs.nvlFleur(fleur);
                 }
+
+
+
+
 
                 if (image != null) {
 

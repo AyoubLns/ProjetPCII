@@ -17,6 +17,9 @@ public class RessourceManager extends Thread {
         this.fleur = fleurs;
     }
 
+    /**
+     * Exécute la logique de mise à jour de la ressource à intervalles réguliers.
+     */
     @Override
     public void run() {
         while (!interrupted()) {

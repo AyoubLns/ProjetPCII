@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ListeFleurs {
 
     /* La liste des fleurs */
-    private ArrayList<Fleur> fleurs = new ArrayList<Fleur>();
+    private ArrayList<Fleur> fleurs = new ArrayList<Fleur>(); // Liste des fleurs
 
     /* La fleur courante (au début: null) */
     private Fleur courante = null;
@@ -16,14 +16,14 @@ public class ListeFleurs {
     private Fleur fleur1;
     private Fleur fleur2;
     private Fleur fleur3;
-    private static final int vitesse = 2000;
+    private static final int vitesse = 2000; // Vitesse de progression de l'état de la fleur
     private int FleurPourrie = 5;
 
     /**
      * Le constructeur par défaut pour cette version de test construit une liste avec quelques fleurs.
      */
     public ListeFleurs() {
-        // Créez les fleurs sans utiliser getValetat() dans le constructeur
+        // Création des fleurs avec des noms, des positions et des vitesses différentes
         fleur = new Fleur("Tulipe", 50, 75, 0, vitesse - 1000);
         fleur1 = new Fleur("Rose", 150, 115, 0, vitesse);
         fleur2 = new Fleur("Lys", 200, 200, 0, vitesse);
