@@ -65,14 +65,12 @@ public class Fleur {
         return y;
     }
 
-    // Méthode pour obtenir une coordonnée aléatoire pour X entre 0 et 1000
+    // Méthode pour obtenir une coordonnée aléatoire pour X entre 30 et 1000
     public int getRandomX() {
-        return (int) (Math.random() * 1000);
+        return (int) (Math.random() * 970) + 30;
     }
 
-    // Méthode pour obtenir une coordonnée aléatoire pour Y entre 0 et 750
-    public int getRandomY() {
-        return (int) (Math.random() * 750);
-    }
+    // Méthode pour obtenir une coordonnée aléatoire pour Y entre 20 et 750
+    public int getRandomY() { return (int) (Math.random() * 730) + 20; }
 
 }
