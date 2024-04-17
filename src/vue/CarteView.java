@@ -18,10 +18,10 @@ public class CarteView extends JPanel {
     /** La liste des jardiniers */
     private final ListeJardiniers lj;
     /** L'image pour dessiner les jardiniers */
-    private Image jardinierImage, jardinierImage2, imageJardiniere;
-    private Image imageTerre, imageJeune,
+    private Image jardinierImage, jardinierImage2;
+    private Image imageTerre,
+            coeurImage, image, // Images pour les fleurs et les coeurs
             imageTulipe, imageRose, imageLys, imageOrchidee, // Images pour les fleurs
-            imagePourrie, coeurImage, image, // Images pour les fleurs et les coeurs
             imageLysF, imageLysB, // Images pour les fleurs fanées et bourgeon de lys
             imageRoseB, imageRoseF, // Images pour les fleurs fanées et bourgeon de rose
             imageOrchB, imageOrchF, // Images pour les fleurs fanées et bourgeon d'orchidée
@@ -55,9 +55,6 @@ public class CarteView extends JPanel {
             this.imageTerre = new ImageIcon("images/terre.png").getImage();
             imageTerre = imageTerre.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
-            this.imageJeune = new ImageIcon("images/Bourgeonn.png").getImage();
-            imageJeune= imageJeune.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-
             this.imageTulipe = new ImageIcon("images/tulipe.png").getImage();
             imageTulipe= imageTulipe.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
@@ -71,7 +68,7 @@ public class CarteView extends JPanel {
             imageOrchidee= imageOrchidee.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.imageLysB = new ImageIcon("images/BourgLys.png").getImage();
-            imageLysB = imageLys.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
+            imageLysB = imageLysB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
 
             this.imageRoseB = new ImageIcon("images/BourgRose.png").getImage();
             imageRoseB = imageRoseB.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
@@ -93,9 +90,6 @@ public class CarteView extends JPanel {
 
             this.imageRoseF = new ImageIcon("images/FaneeRose.png").getImage();
             imageRoseF = imageRoseF.getScaledInstance( 80, 80, Image.SCALE_SMOOTH);
-
-            this.imagePourrie = new ImageIcon("images/Fanée.png").getImage();
-            imagePourrie= imagePourrie.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
             this.coeurImage = new ImageIcon("images/coeur.png").getImage();
             coeurImage = coeurImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
